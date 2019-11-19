@@ -5,7 +5,8 @@
 1. Get an account on https://github.com
 2. Make sure you have the git version control system setup: https://help.github.com/en/github/getting-started-with-github/set-up-git
 3. Clone the repository ``git@github.com:jhale/computational-workflows.git``.
-4. Install Docker on your computer https://www.docker.com/products/docker-desktop or 
+4. Install Docker on your computer https://www.docker.com/products/docker-desktop or https://docs.docker.com/install/
+5. Please read the paper https://journals.plos.org/ploscompbiol/article/file?id=10.1371/journal.pcbi.1005510&type=printable
 
 ## Technical setup
 
@@ -29,6 +30,7 @@ Reference material:
 * The docker cheat sheet: https://github.com/wsargent/docker-cheat-sheet
 * https://ieeexplore.ieee.org/document/7933304 Containers for Portable, Productive, and Performant Scientific Computing (Hale et al.)
 * https://docs.docker.com/
+* https://fenics.readthedocs.io/projects/containers/en/latest/
 
 Points to cover:
 
@@ -68,3 +70,129 @@ https://docs.docker.com/install/linux/docker-ce/fedora/
 ## Getting a bit more interesting
 
     docker run -it ubuntu bash
+
+* `docker` the docker *client*.
+* `run` Run a *container*.
+* `-it`: Interactive (e.g. terminal) session.
+* `ubuntu`: Name of the image (https://hub.docker.com/).
+* `bash`: Program to execute inside the container.
+
+    exit
+
+## Exercises
+
+1. Run the executable `python` within the `python` image.
+
+    docker run -ti <> <>
+
+To exit:
+
+    >>> exit()
+
+2. Tags. Run the executable `python` within the `python:3.7` image.
+
+    docker run -ti <> <>
+
+To exit:
+
+    >>> exit()
+
+## Sharing files from the host (e.g. your laptop) to the container
+
+* Key point: By default, Docker containers are *completely isolated* from your
+own system.
+* You must *manually* specify which directories you want to share
+into a container.
+
+    docker run -ti -v $(pwd):/root/shared ubuntu bash
+
+Inside the running container:
+
+    # cd /root/shared
+    # ls
+    # exit
+
+* `-v /host/path:/container/path` share the path at `/host/path` on the host,
+to the path `/container/path` inside the container.
+
+## Exercise: Running a `python` script
+
+There is a python script at ``python/hello_world.py``. Modify it to read:
+
+    print("Hello world!")
+
+Make sure you are in the root of the git repository.
+
+    # pwd
+    /Users/jack.hale/code/computational-workflows
+
+Now run the script using a Docker container:
+
+    docker run -ti -v $(pwd):/root/shared <> "<> <>"
+
+* <> Image name.
+* <> Command to run in container.
+
+## Exercise: `bash` then `python`
+
+Instead, run ``bash`` inside a container and then run ``python
+/root/shared/python/hello_world.py``.
+
+## Making your own Docker image
+
+Full documentation: https://docs.docker.com/engine/reference/builder/
+
+Docker can build *new* images by writing a `Dockerfile`.
+
+A `Dockerfile` contains a list of instructions (recipe) explaing how the image should be built.
+
+A very simple `Dockerfile` can be found at `docker/example1/Dockerfile`.
+
+# Exercise: Building your own image
+
+Open `docker/example1/Dockerfile`. What does it do?
+
+You can *build* a docker image following the recipe in the `Dockerfile` by running:
+
+```
+cd docker/example1/Dockerfile
+docker build .
+```
+
+You should see some output like:
+
+```
+Successfully built e97420b64647
+```
+
+This unique *hash* can be used to run the image.
+
+```
+docker run -ti e97420b64647 ipython
+```
+
+Note: You need to substitute *your* unique hash.
+
+## Exercise: Changing the default command
+
+Try running:
+
+```
+docker run -ti e97420b64647
+```
+
+What happens?
+
+We can change the default command to `ipython` using the `CMD` instruction at
+the bottom of the `Dockerfile`.
+
+Try adding:
+
+```
+CMD ["ipython"]
+```
+
+At the bottom of the `docker/example1/Dockerfile` and rebuilding. Then
+`docker run` the new container. What do you see?
+
+## 
