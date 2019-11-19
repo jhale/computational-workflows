@@ -1,10 +1,17 @@
 # Instructor instructions
 
+## Preparation instructions
+
+1. Get an account on https://github.com
+2. Make sure you have the git version control system setup: https://help.github.com/en/github/getting-started-with-github/set-up-git
+3. Clone the repository ``git@github.com:jhale/computational-workflows.git``.
+4. Install Docker on your computer https://www.docker.com/products/docker-desktop or 
+
 ## Technical setup
 
 1. Switch to ``/bin/bash`` shell.
 2. Run ``swc-shell-split-window``.
-3. Go to: https://pad.carpentries.org/comp-workflows
+3. Instruct students to go to: https://pad.carpentries.org/comp-workflows
 
 ## Overview
 
@@ -53,5 +60,11 @@ https://www.docker.com/products/docker-desktop
 https://docs.docker.com/install/linux/docker-ce/ubuntu/
 https://docs.docker.com/install/linux/docker-ce/debian/
 https://docs.docker.com/install/linux/docker-ce/fedora/
+
+## Testing Docker for the first time
+
+  docker run hello-world
+
+## Getting a bit more interesting
 
 
