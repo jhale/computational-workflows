@@ -63,8 +63,8 @@ https://docs.docker.com/install/linux/docker-ce/fedora/
 
 ## Testing Docker for the first time
 
-  docker run hello-world
+    docker run hello-world
 
 ## Getting a bit more interesting
 
-
+    docker run -it ubuntu bash
