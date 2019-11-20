@@ -82,8 +82,8 @@ https://docs.docker.com/install/linux/docker-ce/fedora/
 ## Exercises
 
 1. Run the executable `python` within the `python` image.
-
-    docker run -ti <> <>
+        
+        docker run -ti <> <>
 
 To exit:
 
@@ -91,7 +91,7 @@ To exit:
 
 2. Tags. Run the executable `python` within the `python:3.7` image.
 
-    docker run -ti <> <>
+        docker run -ti <> <>
 
 To exit:
 
@@ -119,16 +119,22 @@ to the path `/container/path` inside the container.
 
 There is a python script at ``python/hello_world.py``. Modify it to read:
 
-    print("Hello world!")
+```
+print("Hello world!")
+```
 
 Make sure you are in the root of the git repository.
 
-    # pwd
-    /Users/jack.hale/code/computational-workflows
+```
+# pwd
+/Users/jack.hale/code/computational-workflows
+```
 
 Now run the script using a Docker container:
 
-    docker run -ti -v $(pwd):/root/shared <> "<> <>"
+```
+docker run -ti -v $(pwd):/root/shared <> "<> <>"
+```
 
 * <> Image name.
 * <> Command to run in container.
@@ -195,4 +201,50 @@ CMD ["ipython"]
 At the bottom of the `docker/example1/Dockerfile` and rebuilding. Then
 `docker run` the new container. What do you see?
 
-## 
+## Exercise: Tagging an image
+
+*Tagging* (e.g. naming) an image gives us an easier way to refer it to than the
+*hash* (e.g. e97420b64647).
+
+```
+cd docker/example1/Dockerfile
+docker build --help
+docker build -t ipython .
+docker run -it <>
+```
+
+## Exercise: Sharing images with a colleague.
+
+Scenarios:
+* You want to share an image with your colleague.
+* You want to release the software environment you used for the results in a
+  paper as supplementary material.
+
+Please read the documentation here:
+https://docs.docker.com/engine/reference/commandline/save/ and construct 
+a command that saves the image `ipython` to a file `ipython-image.tar.gz`.
+
+Take a look at https://docs.docker.com/engine/reference/commandline/load/
+and find how to load a `*.tar.gz` file back into Docker.
+
+## Extended exercise.
+
+A more convienient way to store Docker images is on a *Docker registry*.  In
+this exercise we will *push* (like `git`) to the Docker Hub
+(https://hub.docker.com) and your colleague will *pull* (like `git`) your image
+to his/her computer.
+
+1. Sign up for an account at https://hub.docker.com.
+2. You need to login using:
+
+    docker login
+
+3. Modify the `Dockerfile` to build an image tagged with  `pytest` installed
+   (via `pip`). `pytest` is a Python package for writing unit tests (more later).
+```
+FROM python:3.8
+
+RUN pip install numpy pytest
+```
+
+## Ask me anything (about Docker).
