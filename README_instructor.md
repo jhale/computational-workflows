@@ -383,6 +383,23 @@ In this case, it can be useful to write a test *that is expected to fail*. Why?
 Write a test in `python/unit_testing/basic/test_add.py` that is expected to fail.
 Mark that it is expected to fail using the `@pytest.mark.xfail` decorator.
 
+## Extended exercise: Triangle
+
+1. In the file `python/unit_testing/triangle/triangle.py` there is a function that
+   takes in the length of the two shorter sides of a right angled triangle
+   and computes the three angles of the corresponding right angled triangle.
+
+2. What tests could we use to verify the correctness of our function?
+
+* Angles add to 180 degrees.
+* Isoceles triangle.
+* One angle is always 90 degrees. If not, the program should throw an Exception.
+* 30-60-90 triangle.
+* Small angle approximation
+
+3. Write some tests. Discuss floating point comparisons. Bonus points for using
+   `pytest.mark.parametrize` on one test.
+
 ## Extended exercise: Wallet
 
 1. In the directory `python/unit_testing/wallet` there is a complete set of tests
@@ -443,7 +460,4 @@ class Wallet(object):
         raise NotImplementedError
 ```
 
-## Extended exercise
-
-Take a small but non-trivial piece of scientific computing code from your field.
-Write a set of unit tests.
+## Ask me anything (about unit testing)
