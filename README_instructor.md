@@ -16,14 +16,39 @@
 
 ## Overview
 
-* 2 hours: Docker. *Specifying and running software anywhere*.
-* 2 hours: Unit testing with Python and pytest.
-* 2 hours: Continuous integration on github.
+* 1 hour: Discussion. "Good enough practices in scientific computing"
+* ~2 hours: Docker. *Specifying and running software anywhere*.
+* ~1 hours: Unit testing with Python and pytest.
+* ~1 hours: Continuous integration on github.
 
 * We will learn together by *doing* things.
 * We will use a top-down learning style (broad picture first, details last).
 
-## Docker
+## Good enough practices in scientific computing
+
+https://journals.plos.org/ploscompbiol/article/file?id=10.1371/journal.pcbi.1005510&type=printable
+
+# Points to discuss amongst the group
+
+1. Box 1. As an individual, within each section (1-6), tick the practices that
+   you already undertake in your scientific computing work.
+
+2. Box 1. In a group three, within each section (1-6), rank (1 through N, most
+   to least important) each practice. If you do not know anything about a practice,
+   put a star next to it. Justify your decisions.
+
+3. Scenario 1: You are working on a small software project that will only be used by
+   you to produce the results for one paper. Which of the practices will you *not* use?
+
+4. Scenario 2: You are working on a large software project that will be used by many people
+   and will exist beyond your tenure in the laboratory. Which of the best practices will you *not* use?
+
+3. Question: Does your research group have any guidelines on scientific software good practice?
+
+5. Question: What is the difference between *scientific software good practice*, *open science* and
+   *reproducible computing science*?
+
+# Docker
 
 Reference material:
 
@@ -85,17 +110,17 @@ https://docs.docker.com/install/linux/docker-ce/fedora/
         
         docker run -ti <> <>
 
-To exit:
+   To exit:
 
-    >>> exit()
+       >>> exit()
 
 2. Tags. Run the executable `python` within the `python:3.7` image.
 
         docker run -ti <> <>
 
-To exit:
+   To exit:
 
-    >>> exit()
+       >>> exit()
 
 ## Sharing files from the host (e.g. your laptop) to the container
 
@@ -138,6 +163,7 @@ docker run -ti -v $(pwd):/root/shared <> "<> <>"
 
 * <> Image name.
 * <> Command to run in container.
+* <> Path (container!) for the Python script to run.
 
 ## Exercise: `bash` then `python`
 
@@ -229,6 +255,8 @@ and find how to load a `*.tar.gz` file back into Docker.
 
 ## Extended exercise.
 
+Write your answer in the `docker/exercise1` directory.
+
 A more convienient way to store Docker images is on a *Docker registry*.  In
 this exercise we will *push* (like `git`) to the Docker Hub
 (https://hub.docker.com) and your colleague will *pull* (like `git`) your image
@@ -239,7 +267,7 @@ to his/her computer.
 
     docker login
 
-3. Modify the `Dockerfile` to build an image tagged with  `pytest` installed
+3. Write a new `Dockerfile` to build an image tagged with `pytest` and `numpy` installed
    (via `pip`). `pytest` is a Python package for writing unit tests (more later).
 ```
 FROM python:3.8
@@ -247,4 +275,175 @@ FROM python:3.8
 RUN pip install numpy pytest
 ```
 
-## Ask me anything (about Docker).
+4. Build the image and tag it `<yourdockerhubusername>/pytest`.
+5. Push the image with tag `<yourdockerhubusername>/pytest` to the Docker Hub
+   (https://docs.docker.com/engine/reference/commandline/push/).
+
+## Dissecting a more complex `Dockerfile`
+
+https://github.com/FEniCS/dolfinx/blob/master/Dockerfile
+
+## 15 mins: Ask me anything (about Docker).
+
+## Break.
+
+# Unit testing
+
+* Question: What is testing?
+
+* Unit testing: Running *experiments* on classes and methods in your
+  program and confirming that the code behaves in the expected way.
+
+## Easier to see than to explain.
+
+Go to the directory `python/unit_testing/`.
+
+1. There is a file `add.py` with a single function. What does the function do?
+2. There is a file `test_add.py` with a single function. What does the function do?
+3. Run a docker container using the image e.g. `jhale/pytest` with the directory
+   `computational-workflows` shared into the container at `/root/shared`.
+4. Inside the container, go to the directory `/root/shared/python/unit_testing`.
+5. Run the program `py.test`. What happens?
+
+## Exercise
+
+1. Add a new method `subtract` in `subtract.py` that takes two arguments `a` and `b` and subtracts
+`b` from `a`. 
+
+2. Write two tests in `test_subtract.py` your function.
+
+3. Run the tests using `py.test`.
+
+## Parameterising tests
+
+It is useful to run parameterise tests, i.e. run the same
+test over multiple values of inputs. This can be done easily
+using the `@pytest.mark.parametrize` *decorator*.
+
+https://docs.pytest.org/en/latest/parametrize.html
+
+1. Modify the `test_add.py` file as follows:
+
+```
+import pytest
+from add import add
+
+@pytest.mark.parametrize("a,b,result", [(3, 5, 8), (2, 4, 6), (-3, -4, -7)])
+def test_add(a, b, result):
+    c = add(a, b)
+    assert(c == result)
+```
+
+2. Run `py.test -v` inside the container. What do you see?
+
+## Exercise: `pytest.mark.parametrize`
+
+Parametrize the `test_subtract` test.
+
+## Expected failures.
+
+Sometimes it is useful to test whether our function *fails* in the right way.
+
+For example, our `subtract` function should `raise` an `Exception` if we try
+and subtract a string from an integer.
+
+Add the following test to the bottom of `test_subtract.py`.
+```
+import pytest
+
+def test_subtract_type_error():
+    with pytest.raises(TypeError):
+        c = subtract(4, "b")
+```
+
+## Marking slow running tests
+
+Particularly in scientific codes, certain tests can take a long time to execute.
+
+A key aspect of unit testing is that the tests are run frequently (on every git
+commit). Having slow tests can break this cycle. Either you commit less often,
+or you do not run the tests often.
+
+It is possible to mark certain tests as being slow, and therefore automatically
+skip them.
+
+Try making a long running function called `slow()` using the Python `time.sleep()`.
+Write a test called `test_slow`. Use the decorator `@pytest.mark.slow` to mark
+the test as slow. To run the slow test:
+
+    py.test -v -k "slow" .
+
+## Expected failures
+
+Sometimes it is simply not possible to get a piece of code working for all possible
+inputs. Perhaps it contains a bug, or perhaps it is not clear why it fails.
+
+In this case, it can be useful to write a test *that is expected to fail*. Why?
+
+Write a test in `python/unit_testing/basic/test_add.py` that is expected to fail.
+Mark that it is expected to fail using the `@pytest.mark.xfail` decorator.
+
+## Extended exercise: Wallet
+
+1. In the directory `python/unit_testing/wallet` there is a complete set of tests
+   in `test_wallet.py` for a program `wallet.py`. Get the tests to pass by finishing
+   the code in `wallet.py`.
+
+2. Add a method `add_interest` to the class `Wallet` which adds compound interest to the
+   wallet at a certain rate and over a certain period.  Write a test for the
+   new functionality.
+
+```
+# test_wallet.py
+
+import pytest
+from wallet import Wallet, InsufficientAmount
+
+def test_default_initial_amount():
+    wallet = Wallet()
+    assert wallet.balance == 0
+
+def test_setting_initial_amount():
+    wallet = Wallet(100)
+    assert wallet.balance == 100
+
+def test_wallet_add_cash():
+    wallet = Wallet(10)
+    wallet.add_cash(90)
+    assert wallet.balance == 100
+
+def test_wallet_spend_cash():
+    wallet = Wallet(20)
+    wallet.spend_cash(10)
+    assert wallet.balance == 10
+
+def test_wallet_spend_cash_raises_exception_on_insufficient_amount():
+    wallet = Wallet()
+    with pytest.raises(InsufficientAmount):
+        wallet.spend_cash(100)
+```
+
+and then:
+
+```
+# wallet.py
+
+class InsufficientAmount(Exception):
+    pass
+
+
+class Wallet(object):
+    def __init__(self, initial_amount=0):
+        raise NotImplementedError
+
+    def spend_cash(self, amount):
+        raise NotImplementedError
+
+    def add_cash(self, amount):
+        raise NotImplementedError
+```
+
+## Extended exercise
+
+Take a small but non-trivial piece of scientific computing code from your field.
+Write a set of unit tests.
