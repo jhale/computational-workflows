@@ -13,6 +13,7 @@
 1. Switch to ``/bin/bash`` shell.
 2. Run ``swc-shell-split-window``.
 3. Instruct students to go to: https://pad.carpentries.org/comp-workflows
+4. Print copies of paper and git cheat sheet https://github.github.com/training-kit/downloads/github-git-cheat-sheet.pdf
 
 ## Overview
 
@@ -23,6 +24,7 @@
 
 * We will learn together by *doing* things.
 * We will use a top-down learning style (broad picture first, details last).
+* There will be time for questions at all difficulty levels.
 
 ## Good enough practices in scientific computing
 
@@ -36,6 +38,8 @@ https://journals.plos.org/ploscompbiol/article/file?id=10.1371/journal.pcbi.1005
 2. Box 1. In a group three, within each section (1-6), rank (1 through N, most
    to least important) each practice. If you do not know anything about a practice,
    put a star next to it. Justify your decisions.
+
+3. 
 
 3. Scenario 1: You are working on a small software project that will only be used by
    you to produce the results for one paper. Which of the practices will you *not* use?
@@ -287,7 +291,11 @@ https://github.com/FEniCS/dolfinx/blob/master/Dockerfile
 
 ## Break.
 
-# Unit testing
+# Unit testing and Test Driven Development
+
+## References
+
+https://en.wikipedia.org/wiki/Test-driven_development
 
 * Question: What is testing?
 
@@ -461,3 +469,34 @@ class Wallet(object):
 ```
 
 ## Ask me anything (about unit testing)
+
+# Putting it all together (github + docker container + unit testing + running on circleci)
+
+1. Create new repository on github called `triangle`.
+2. `git clone` it.
+2. Copy across `docker/Dockerfile` (based on python image with pip sympy and numpy)
+3. `git add`, `git commit` and `git push` the `Dockerfile`.
+3. Build the Docker image. Push it to the dockerhub with tag `<username>/triangle`.
+4. Go to circleci.com. Login.
+5. On the dashboard, find the repository.
+6. Create the file `.circleci/config.yml`, and push it up to github.
+7. Press the start building button.
+8. Github. Branches > Branch Protection Rules.
+8. Create a branch in the git repository. Add a new test.
+9. Make a new pull request.
+10. The pull request can only be merged when the tests pass.
+
+```
+version: 2
+jobs:
+  build:
+    docker:
+      - image: <username>/triangle
+
+    steps:
+      - checkout
+
+      - run:
+          name: run tests
+          command: py.test
+```
