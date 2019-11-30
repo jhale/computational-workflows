@@ -128,6 +128,10 @@ RUN apt-get update && \
 
 ## Setup CircleCI to run tests
 
+1. Sign up for an account on CircleCI (https://circleci.com). It is important
+   that you use the option to get an account using your existing Github login
+   as this will link the two accounts.
+
 1. First of all we will write a file ``.circleci/config.yml``. This file will
    contain all of the instructions necessary for CircleCI to test your project.
    As usual, ``git add``, ``git commit`` and ``git push`` it to your repository.
@@ -156,7 +160,9 @@ jobs:
      * Pull the Docker image from the Dockerhub.
      * Launch a container running your Docker image.
      * Run the command `py.test-3` inside the image.
-     * If the command runs successfully, it will report
+     * If the commands runs successfully, it will report 
+       the success back to github.com. Otherwise, it will
+       report a failure.
 6. Refresh your repository home page on github.com. You 
    should see a small green tick next to the last commit.
    Click the green tick, then click Details. You will
