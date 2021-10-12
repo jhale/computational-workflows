@@ -16,37 +16,62 @@ Computing.  During the course we will discuss *acheivable* best practice for
 performing Scientific Computing, and we will discover some tools (containers,
 unit testing and continuous integration) that can help.
 
+### Outline
 
-### Useful information
+* Introduction to Good Practice in Scientific Computing.
+* Specifying and running software anywhere with Docker.
+* Unit testing software with Python and pytest.
+* Continuous integration using GitHub Actions.
+
+### Important information
 
 * Due to room limitations the 2021 edition of the course must run under the
   [CovidCheck system](https://covid19.public.lu/en/covidcheck.html).  If you
   are vaccinated or recovered, please bring your EU Digital Covid Certificate.
   If you want to take a lateral flow test on-site, please contact me via email
-  as soon as possible and turn up at 0845 so that we have time to organise the
-  test.
+  as soon as possible.
 
-* Assumed knowledge: basic git, basic Python, basic Linux administration
-  (shell, installing software from package managers etc.).
+### Useful information
 
-* The Etherpad for the 2021 edition is at: https://pad.carpentries.org/cwul2021.
-  The Etherpad is public, please use a pseudonym and do not reveal any personal
-  information.
+* Assumed knowledge: [basic
+  git](https://training.github.com/downloads/github-git-cheat-sheet.pdf),
+  [basic Python](https://github.com/jakevdp/WhirlwindTourOfPython), [basic
+  Linux administration](https://swcarpentry.github.io/shell-novice/) (shell,
+  installing software from package managers etc.). Please refresh your knowledge
+  prior to the course if you are feeling unsure.
+
+* [The Etherpad](https://pad.carpentries.org/cwul2021). We will use the
+  Etherpad for technical questions and for sharing information during the
+  course. The Etherpad is public, please use a pseudonym and do not reveal any
+  personal information.
 
 ### Prior to the day of the course
 
 1. Please download and read the paper [Good enough practices in Scientific
    Computing](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1005510).
+   We will use and discuss the paper during the class.
 
-### Outline
+2. Install Docker on your personal computer following the instructions
+   [here](https://www.docker.com/get-started). Windows, Mac and Linux are
+   supported. Please verify that you can run the following command before the
+   day of the course:
+
+     docker run -it hello-world
+
+   If you are having difficulties please contact me via the
+   [Etherpad](https://pad.carpentries.org/cwul2021).
+
+3. See if you have the version control system `git` installed:
+
+     git --version
+
+   If not, then please install it following the instructions
+   [here](https://git-scm.com/downloads).
+
+3. Get an account at [GitHub](https://github.com).
 
 
 ### Assessment
 
 A coursework will be distributed at the end of the class. To pass the course and
 receive the ECTS credits you must complete the coursework.
-
-### Acknowledgements
-
-I gratefully acknowledge the authors of the following sources:
-
