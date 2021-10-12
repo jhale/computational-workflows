@@ -27,9 +27,9 @@ unit testing and continuous integration) that can help.
 
 * Due to room limitations the 2021 edition of the course must run under the
   [CovidCheck system](https://covid19.public.lu/en/covidcheck.html).  If you
-  are vaccinated or recovered, please bring your EU Digital Covid Certificate.
-  If you want to take a lateral flow test on-site, please contact me via email
-  as soon as possible.
+  are vaccinated, tested or recovered, please bring your EU Digital Covid
+  Certificate.  If you want to take a free lateral flow test on-site, please
+  contact me via email as soon as possible.
 
 ### Useful information
 
