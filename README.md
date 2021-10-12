@@ -75,3 +75,7 @@ unit testing and continuous integration) that can help.
 
 A coursework will be distributed at the end of the class. To pass the course and
 receive the ECTS credits you must complete the coursework.
+
+### References
+
+TODO.
