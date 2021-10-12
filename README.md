@@ -56,14 +56,14 @@ unit testing and continuous integration) that can help.
    supported. Please verify that you can run the following command before the
    day of the course:
 
-     docker run -it hello-world
+       docker run -it hello-world
 
    If you are having difficulties please contact me via the
    [Etherpad](https://pad.carpentries.org/cwul2021).
 
 3. See if you have the version control system `git` installed:
 
-     git --version
+       git --version
 
    If not, then please install it following the instructions
    [here](https://git-scm.com/downloads).
