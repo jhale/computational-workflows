@@ -17,7 +17,7 @@ to construct the necessary commands.*
 
 ## Deliverable
 
-By email to jack.hale@uni.lu, Subject: Computational Workflows I homework.
+By email to jack.hale@uni.lu, Subject: Computational Workflows Homework
 
 1. Link to the github repository on github.com.
 2. Your repository should contain a modified version of this file `homework.md`

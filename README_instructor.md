@@ -39,8 +39,6 @@ https://journals.plos.org/ploscompbiol/article/file?id=10.1371/journal.pcbi.1005
    to least important) each practice. If you do not know anything about a practice,
    put a star next to it. Justify your decisions.
 
-3. 
-
 3. Scenario 1: You are working on a small software project that will only be used by
    you to produce the results for one paper. Which of the practices will you *not* use?
 
