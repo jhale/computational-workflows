@@ -3,17 +3,22 @@
 ## Preparation instructions
 
 1. Get an account on https://github.com
-2. Make sure you have the git version control system setup: https://help.github.com/en/github/getting-started-with-github/set-up-git
+2. Make sure you have the git version control system setup:
+   https://help.github.com/en/github/getting-started-with-github/set-up-git
 3. Clone the repository ``git@github.com:jhale/computational-workflows.git``.
-4. Install Docker on your computer https://www.docker.com/products/docker-desktop or https://docs.docker.com/install/
-5. Please read the paper https://journals.plos.org/ploscompbiol/article/file?id=10.1371/journal.pcbi.1005510&type=printable
+4. Install Docker on your computer
+   https://www.docker.com/products/docker-desktop or
+   https://docs.docker.com/install/
+5. Please read the paper
+   https://journals.plos.org/ploscompbiol/article/file?id=10.1371/journal.pcbi.1005510&type=printable
 
 ## Technical setup
 
 1. Switch to ``/bin/bash`` shell.
 2. Run ``swc-shell-split-window``.
 3. Instruct students to go to: https://pad.carpentries.org/comp-workflows
-4. Print copies of paper and git cheat sheet https://github.github.com/training-kit/downloads/github-git-cheat-sheet.pdf
+4. Print copies of paper and git cheat sheet
+   https://github.github.com/training-kit/downloads/github-git-cheat-sheet.pdf
 
 ## Overview
 
@@ -36,39 +41,43 @@ https://journals.plos.org/ploscompbiol/article/file?id=10.1371/journal.pcbi.1005
    you already undertake in your scientific computing work.
 
 2. Box 1. In a group three, within each section (1-6), rank (1 through N, most
-   to least important) each practice. If you do not know anything about a practice,
-   put a star next to it. Justify your decisions.
+   to least important) each practice. If you do not know anything about a
+   practice, put a star next to it. Justify your decisions.
 
-3. Scenario 1: You are working on a small software project that will only be used by
-   you to produce the results for one paper. Which of the practices will you *not* use?
+3. Scenario 1: You are working on a small software project that will only be
+   used by you to produce the results for one paper. Which of the practices
+   will you *not* use?
 
-4. Scenario 2: You are working on a large software project that will be used by many people
-   and will exist beyond your tenure in the laboratory. Which of the best practices will you *not* use?
+4. Scenario 2: You are working on a large software project that will be used by
+   many people and will exist beyond your tenure in the laboratory. Which of
+   the best practices will you *not* use?
 
-3. Question: Does your research group have any guidelines on scientific software good practice?
+3. Question: Does your research group have any guidelines on scientific
+   software good practice?
 
-5. Question: What is the difference between *scientific software good practice*, *open science* and
-   *reproducible computing science*?
+5. Question: What is the difference between *scientific software good
+   practice*, *open science* and *reproducible computing science*?
 
 # Docker
 
 Reference material:
 
 * The docker cheat sheet: https://github.com/wsargent/docker-cheat-sheet
-* https://ieeexplore.ieee.org/document/7933304 Containers for Portable, Productive, and Performant Scientific Computing (Hale et al.)
+* https://ieeexplore.ieee.org/document/7933304 Containers for Portable,
+  Productive, and Performant Scientific Computing (Hale et al.)
 * https://docs.docker.com/
 * https://fenics.readthedocs.io/projects/containers/en/latest/
 
 Points to cover:
 
 * What is Docker?
-  * Docker is a software tool designed to make it easy to create, deploy
-    and run applications by using containers.
+  * Docker is a software tool designed to make it easy to create, deploy and
+    run applications by using containers.
 * What is a container.
-  * Package up an application and all of the parts it needs (libraries, configuration)
-    into a *single* package.
-* Ensures that the application runs *identically* on any machine, regardless
-  of any customisations on that machine.
+  * Package up an application and all of the parts it needs (libraries,
+    configuration) into a *single* package.
+* Ensures that the application runs *identically* on any machine, regardless of
+  any customisations on that machine.
 
 * What *problems* does Docker solve *in a scientific computing context*?
   * *Portability, collaboration.*
@@ -79,7 +88,8 @@ Points to cover:
     * I want to publish my code and software so that someone else can run them.
     * I want to be able to reproduce my results in 5 years.
   * *High-performance computers (HPC)*
-    * I won't cover this in this course, see Hale et al. and https://sylabs.io/docs/
+    * I won't cover this in this course, see Hale et al. and
+      https://sylabs.io/docs/
 
 ## Installing Docker
 
@@ -109,14 +119,14 @@ https://docs.docker.com/install/linux/docker-ce/fedora/
 ## Exercises
 
 1. Run the executable `python` within the `python` image.
-        
+
         docker run -ti <> <>
 
    To exit:
 
        >>> exit()
 
-2. Tags. Run the executable `python` within the `python:3.7` image.
+2. Tags. Run the executable `python` within the `python:3.8` image.
 
         docker run -ti <> <>
 
@@ -178,7 +188,8 @@ Full documentation: https://docs.docker.com/engine/reference/builder/
 
 Docker can build *new* images by writing a `Dockerfile`.
 
-A `Dockerfile` contains a list of instructions (recipe) explaing how the image should be built.
+A `Dockerfile` contains a list of instructions (recipe) explaing how the image
+should be built.
 
 A very simple `Dockerfile` can be found at `docker/example1/Dockerfile`.
 
@@ -186,7 +197,8 @@ A very simple `Dockerfile` can be found at `docker/example1/Dockerfile`.
 
 Open `docker/example1/Dockerfile`. What does it do?
 
-You can *build* a docker image following the recipe in the `Dockerfile` by running:
+You can *build* a docker image following the recipe in the `Dockerfile` by
+running:
 
 ```
 cd docker/example1/Dockerfile
@@ -226,8 +238,8 @@ Try adding:
 CMD ["ipython"]
 ```
 
-At the bottom of the `docker/example1/Dockerfile` and rebuilding. Then
-`docker run` the new container. What do you see?
+At the bottom of the `docker/example1/Dockerfile` and rebuilding. Then `docker
+run` the new container. What do you see?
 
 ## Exercise: Tagging an image
 
@@ -269,8 +281,10 @@ to his/her computer.
 
     docker login
 
-3. Write a new `Dockerfile` to build an image tagged with `pytest` and `numpy` installed
-   (via `pip`). `pytest` is a Python package for writing unit tests (more later).
+3. Write a new `Dockerfile` to build an image tagged with `pytest` and `numpy`
+   installed (via `pip`). `pytest` is a Python package for writing unit tests
+   (more later).
+
 ```
 FROM python:3.8
 
@@ -305,16 +319,19 @@ https://en.wikipedia.org/wiki/Test-driven_development
 Go to the directory `python/unit_testing/`.
 
 1. There is a file `add.py` with a single function. What does the function do?
-2. There is a file `test_add.py` with a single function. What does the function do?
-3. Run a docker container using the image e.g. `jhale/pytest` with the directory
-   `computational-workflows` shared into the container at `/root/shared`.
-4. Inside the container, go to the directory `/root/shared/python/unit_testing`.
+2. There is a file `test_add.py` with a single function. What does the function
+   do?
+3. Run a docker container using the image e.g. `jhale/pytest` with the
+   directory `computational-workflows` shared into the container at
+   `/root/shared`.
+4. Inside the container, go to the directory
+   `/root/shared/python/unit_testing`.
 5. Run the program `py.test`. What happens?
 
 ## Exercise
 
-1. Add a new method `subtract` in `subtract.py` that takes two arguments `a` and `b` and subtracts
-`b` from `a`. 
+1. Add a new method `subtract` in `subtract.py` that takes two arguments `a`
+   and `b` and subtracts `b` from `a`. 
 
 2. Write two tests in `test_subtract.py` your function.
 
@@ -322,9 +339,9 @@ Go to the directory `python/unit_testing/`.
 
 ## Parameterising tests
 
-It is useful to run parameterise tests, i.e. run the same
-test over multiple values of inputs. This can be done easily
-using the `@pytest.mark.parametrize` *decorator*.
+It is useful to run parameterise tests, i.e. run the same test over multiple
+values of inputs. This can be done easily using the `@pytest.mark.parametrize`
+*decorator*.
 
 https://docs.pytest.org/en/latest/parametrize.html
 
@@ -386,8 +403,9 @@ inputs. Perhaps it contains a bug, or perhaps it is not clear why it fails.
 
 In this case, it can be useful to write a test *that is expected to fail*. Why?
 
-Write a test in `python/unit_testing/basic/test_add.py` that is expected to fail.
-Mark that it is expected to fail using the `@pytest.mark.xfail` decorator.
+Write a test in `python/unit_testing/basic/test_add.py` that is expected to
+fail.  Mark that it is expected to fail using the `@pytest.mark.xfail`
+decorator.
 
 ## Extended exercise: Triangle
 
@@ -475,26 +493,25 @@ class Wallet(object):
 2. Copy across `docker/Dockerfile` (based on python image with pip sympy and numpy)
 3. `git add`, `git commit` and `git push` the `Dockerfile`.
 3. Build the Docker image. Push it to the dockerhub with tag `<username>/triangle`.
-4. Go to circleci.com. Login.
-5. On the dashboard, find the repository.
-6. Create the file `.circleci/config.yml`, and push it up to github.
-7. Press the start building button.
+6. Create the file `.github/workflows/test.yml`, and push it up to github.
 8. Github. Branches > Branch Protection Rules.
 8. Create a branch in the git repository. Add a new test.
 9. Make a new pull request.
 10. The pull request can only be merged when the tests pass.
 
 ```
-version: 2
+name: triangle CI
+on: [push]
 jobs:
-  build:
-    docker:
-      - image: <username>/triangle
+  tests:
+    runs-on: ubuntu-20.04
+    container: <username>/triangle:latest
 
-    steps:
-      - checkout
+  steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-      - run:
-          name: run tests
-          command: py.test
+    - name: Run tests
+      run: |
+        python3 -m pytest
 ```
