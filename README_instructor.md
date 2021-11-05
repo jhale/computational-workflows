@@ -507,11 +507,11 @@ jobs:
     runs-on: ubuntu-20.04
     container: <username>/triangle:latest
 
-  steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Run tests
-      run: |
-        python3 -m pytest
+      - name: Run tests
+        run: |
+          python3 -m pytest
 ```
