@@ -7,7 +7,7 @@ Instructor: Jack S. Hale (jack.hale@uni.lu). Office hours: 1500-1600 Wednesdays 
 
 Course Room: MNO 1.030.
 
-Date: Thursday 10th November 0900 - 1200 and 1315 - 1700.
+Date: Thursday 10th November 2022 0900 - 1200 and 1315 - 1700.
 
 ### Description
 
