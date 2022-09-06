@@ -5,9 +5,9 @@
 
 Instructor: Jack S. Hale (jack.hale@uni.lu). Office hours: 1500-1600 Wednesdays (by appointment).
 
-Course Room: MNO 1.010.
+Course Room: MNO 1.030.
 
-Date: Thursday 21st October 0900 - 1200 and 1315 - 1700.
+Date: Thursday 10th November 0900 - 1200 and 1315 - 1700.
 
 ### Description
 
@@ -23,14 +23,6 @@ unit testing and continuous integration) that can help.
 * Unit testing software with Python and pytest.
 * Continuous integration using GitHub Actions.
 
-### Important information
-
-* Due to room limitations the 2021 edition of the course must run under the
-  [CovidCheck system](https://covid19.public.lu/en/covidcheck.html).  If you
-  are vaccinated, tested or recovered, please bring your EU Digital Covid
-  Certificate.  If you want to take a free lateral flow test on-site, please
-  contact me via email as soon as possible.
-
 ### Useful information
 
 * Assumed knowledge: [basic
@@ -40,7 +32,7 @@ unit testing and continuous integration) that can help.
   installing software from package managers etc.). Please refresh your knowledge
   prior to the course if you are feeling unsure.
 
-* [The Etherpad](https://pad.carpentries.org/cwul2021). We will use the
+* [The Etherpad](https://pad.carpentries.org/cwul2022). We will use the
   Etherpad for technical questions and for sharing information during the
   course. The Etherpad is public, please use a pseudonym and do not reveal any
   personal information.
@@ -75,7 +67,3 @@ unit testing and continuous integration) that can help.
 
 A coursework will be distributed at the end of the class. To pass the course and
 receive the ECTS credits you must complete the coursework.
-
-### References
-
-TODO.
